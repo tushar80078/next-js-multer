@@ -14,12 +14,13 @@ const FileUpload = () => {
 
     const formData = new FormData();
     formData.append('file', file);
-
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' },
+      };
+      
     try {
-      await axios.post('http://localhost:3000/api/user', formData, {
-       
-      });
-      alert('File uploaded successfully!');
+      const response = await axios.post('http://localhost:3000/api/user', formData, config);
+      alert(response);
     } catch (error) {
       console.error('Error uploading file:', error);
     }
